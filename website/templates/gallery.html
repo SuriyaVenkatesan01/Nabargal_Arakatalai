@@ -28,61 +28,35 @@
         <div class="gallery-area ptb-100">
             <div class="container">
                 <div class="row">
-
+                    {% for item in items %}
                     <div class="col-sm-6 col-lg-4">
                         <div class="gallery-item">
-                            <a href="assets/img/gallery/gallery1.jpg" data-lightbox="roadtrip">
+                            {% if item.media_type == "video" and item.video_url %}
+                            <a href="{{ item.video_url }}" data-lightbox="roadtrip">
+                                {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="Gallery">
+                                {% else %}
                                 <img src="{% static 'assets/img/gallery/gallery1.jpg' %}" alt="Gallery">
+                                {% endif %}
+                                <i class="icofont-play-alt-1"></i>
+                            </a>
+                            {% else %}
+                            <a href="{% if item.image %}{{ item.image.url }}{% else %}{% static 'assets/img/gallery/gallery1.jpg' %}{% endif %}" data-lightbox="roadtrip">
+                                {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="Gallery">
+                                {% else %}
+                                <img src="{% static 'assets/img/gallery/gallery1.jpg' %}" alt="Gallery">
+                                {% endif %}
                                 <i class="icofont-eye"></i>
                             </a>
+                            {% endif %}
                         </div>
                     </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/gallery2.jpg" data-lightbox="roadtrip">
-                                <img src="{% static 'assets/img/gallery/gallery2.jpg' %}" alt="Gallery">
-                                <i class="icofont-eye"></i>
-                            </a>
-                        </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <p class="text-center">No gallery items available.</p>
                     </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/gallery3.jpg" data-lightbox="roadtrip">
-                                <img src="{% static 'assets/img/gallery/gallery3.jpg' %}" alt="Gallery">
-                                <i class="icofont-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/gallery4.jpg" data-lightbox="roadtrip">
-                                <img src="{% static 'assets/img/gallery/gallery4.jpg' %}" alt="Gallery">
-                                <i class="icofont-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/gallery5.jpg" data-lightbox="roadtrip">
-                                <img src="{% static 'assets/img/gallery/gallery5.jpg' %}" alt="Gallery">
-                                <i class="icofont-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/gallery6.jpg" data-lightbox="roadtrip">
-                                <img src="{% static 'assets/img/gallery/gallery6.jpg' %}" alt="Gallery">
-                                <i class="icofont-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-
+                    {% endfor %}
                 </div>
                 <div class="pagination-area">
                     <ul>

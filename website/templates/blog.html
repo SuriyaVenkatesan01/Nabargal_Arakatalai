@@ -28,175 +28,43 @@
         <section class="blog-area three ptb-100">
             <div class="container">
                 <div class="row">
-                    
+                    {% for post in posts %}
                     <div class="col-sm-6 col-lg-4">
                         <div class="blog-item">
                             <div class="top">
-                                <a href="blog-details.html">
+                                <a href="{% url 'blog_details' post.id %}">
+                                    {% if post.image %}
+                                    <img src="{{ post.image.url }}" alt="Blog">
+                                    {% else %}
                                     <img src="{% static 'assets/img/blog/blog1.jpg' %}" alt="Blog">
+                                    {% endif %}
                                 </a>
                             </div>
                             <div class="bottom">
                                 <ul>
                                     <li>
                                         <i class="icofont-calendar"></i>
-                                        <span>21 Jan, 2024</span>
+                                        <span>{{ post.created_at|date:"d M, Y" }}</span>
                                     </li>
                                     <li>
                                         <i class="icofont-user-alt-3"></i>
                                         <span>By:</span>
-                                        <a href="#">Admin</a>
+                                        <a href="#">{{ post.author_name }}</a>
                                     </li>
                                 </ul>
                                 <h3>
-                                    <a href="blog-details.html">Donate for nutration less poor people</a>
+                                    <a href="{% url 'blog_details' post.id %}">{{ post.title }}</a>
                                 </h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet cupiditate sit ducimus dolor laudantium distinction</p>
-                                <a class="blog-btn" href="blog-details.html">Read More</a>
+                                <p>{{ post.excerpt }}</p>
+                                <a class="blog-btn" href="{% url 'blog_details' post.id %}">Read More</a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="blog-item">
-                            <div class="top">
-                                <a href="blog-details.html">
-                                    <img src="{% static 'assets/img/blog/blog2.jpg' %}" alt="Blog">
-                                </a>
-                            </div>
-                            <div class="bottom">
-                                <ul>
-                                    <li>
-                                        <i class="icofont-calendar"></i>
-                                        <span>22 Jan, 2024</span>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-user-alt-3"></i>
-                                        <span>By:</span>
-                                        <a href="#">Admin</a>
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a href="blog-details.html">Charity meetup in Berline next year</a>
-                                </h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet cupiditate sit ducimus dolor laudantium distinction</p>
-                                <a class="blog-btn" href="blog-details.html">Read More</a>
-                            </div>
-                        </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <p class="text-center">No blog posts available.</p>
                     </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="blog-item">
-                            <div class="top">
-                                <a href="blog-details.html">
-                                    <img src="{% static 'assets/img/blog/blog3.jpg' %}" alt="Blog">
-                                </a>
-                            </div>
-                            <div class="bottom">
-                                <ul>
-                                    <li>
-                                        <i class="icofont-calendar"></i>
-                                        <span>23 Jan, 2024</span>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-user-alt-3"></i>
-                                        <span>By:</span>
-                                        <a href="#">Admin</a>
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a href="blog-details.html">Donate for the poor people to help them</a>
-                                </h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet cupiditate sit ducimus dolor laudantium distinction</p>
-                                <a class="blog-btn" href="blog-details.html">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="blog-item">
-                            <div class="top">
-                                <a href="blog-details.html">
-                                    <img src="{% static 'assets/img/blog/blog4.jpg' %}" alt="Blog">
-                                </a>
-                            </div>
-                            <div class="bottom">
-                                <ul>
-                                    <li>
-                                        <i class="icofont-calendar"></i>
-                                        <span>24 Jan, 2024</span>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-user-alt-3"></i>
-                                        <span>By:</span>
-                                        <a href="#">Admin</a>
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a href="blog-details.html">Charity projects for over 10 million people</a>
-                                </h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet cupiditate sit ducimus dolor laudantium distinction</p>
-                                <a class="blog-btn" href="blog-details.html">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="blog-item">
-                            <div class="top">
-                                <a href="blog-details.html">
-                                    <img src="{% static 'assets/img/blog/blog5.jpg' %}" alt="Blog">
-                                </a>
-                            </div>
-                            <div class="bottom">
-                                <ul>
-                                    <li>
-                                        <i class="icofont-calendar"></i>
-                                        <span>25 Jan, 2024</span>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-user-alt-3"></i>
-                                        <span>By:</span>
-                                        <a href="#">Admin</a>
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a href="blog-details.html">Save the environment to safe your life</a>
-                                </h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet cupiditate sit ducimus dolor laudantium distinction</p>
-                                <a class="blog-btn" href="blog-details.html">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="blog-item">
-                            <div class="top">
-                                <a href="blog-details.html">
-                                    <img src="{% static 'assets/img/blog/blog6.jpg' %}" alt="Blog">
-                                </a>
-                            </div>
-                            <div class="bottom">
-                                <ul>
-                                    <li>
-                                        <i class="icofont-calendar"></i>
-                                        <span>26 Jan, 2024</span>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-user-alt-3"></i>
-                                        <span>By:</span>
-                                        <a href="#">Admin</a>
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a href="blog-details.html">A world where love is pure and the cure</a>
-                                </h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet cupiditate sit ducimus dolor laudantium distinction</p>
-                                <a class="blog-btn" href="blog-details.html">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
+                    {% endfor %}
                 </div>
                 <div class="pagination-area">
                     <ul>
